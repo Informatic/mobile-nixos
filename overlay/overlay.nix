@@ -57,6 +57,8 @@ in
     hardshutdown = callPackage ./hardshutdown {};
     bootlogd = callPackage ./bootlogd {};
 
+    qtestsign = callPackage ./qtestsign {};
+
     #
     # Hacks
     # -----
