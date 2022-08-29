@@ -58,6 +58,15 @@ in
     bootlogd = callPackage ./bootlogd {};
 
     qtestsign = callPackage ./qtestsign {};
+    lk2nd = callPackage ./lk2nd {};
+    lk2nd_openstick = callPackage ./lk2nd {
+      src = self.fetchFromGitHub {
+        owner = "OpenStick";
+        repo = "lk2nd";
+        rev = "";
+        sha256 = "";
+      };
+    };
 
     #
     # Hacks
