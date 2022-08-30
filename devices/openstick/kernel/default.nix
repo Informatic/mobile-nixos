@@ -52,7 +52,8 @@ vk = mobile-nixos.kernel-builder-gcc6 rec {
   enableRemovingWerror = true;
   isCompressed = "gz";
   kernelFile = "Image.${isCompressed}-dtb";
-  isModular = false; #???
+  # isModular = false; #???
+  isModular = true;
 };
 
 in
