@@ -160,6 +160,13 @@ in
     mobile = {
       outputs = {
         android = {
+          android-abootimg = lib.mkOption {
+            type = types.package;
+            description = ''
+              `aboot.img` for ... TODO
+            '';
+            visible = false;
+          };
           android-bootimg = lib.mkOption {
             type = types.package;
             description = ''
