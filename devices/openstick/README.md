@@ -1,5 +1,10 @@
 # openstick wip notes
 
+## outstanding issues
+
+- stage-2 actually working
+- qtestsign (lol python) still doesn't work cross-host
+
 ## usage
 
 (note, I use a newer nixpkgs with mobile-nixos that might fix certain cross-compile scenarios)

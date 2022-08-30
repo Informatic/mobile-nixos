@@ -1,0 +1,310 @@
+Format: Log Type - Time(microsec) - Message - Optional Info
+Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.0.C4.4-00010
+S - IMAGE_VARIANT_STRING=HAAAANAZA
+S - OEM_IMAGE_VERSION_STRING=wingtech-desktop
+S - Boot Config, 0x000002e1
+S - Core 0 Frequency, 0 MHz
+B -      1544 - PBL, Start
+B -      3488 - bootable_media_detect_entry, Start
+B -    157965 - bootable_media_detect_success, Start
+B -    157970 - elf_loader_entry, Start
+B -    159318 - auth_hash_seg_entry, Start
+B -    159528 - auth_hash_seg_exit, Start
+B -    173576 - elf_segs_hash_verify_entry, Start
+B -    231850 - PBL, End
+B -    237991 - SBL1, Start
+B -    301950 - pm_device_init, Start
+D -     14762 - pm_device_init, Delta
+B -    317352 - boot_flash_init, Start
+D -         0 - boot_flash_init, Delta
+B -    321348 - boot_config_data_table_init, Start
+D -     31537 - boot_config_data_table_init, Delta - (452 Bytes)
+B -    357460 - CDT version:3,Platform ID:24,Major ID:1,Minor ID:0,Subtype:0
+B -    363834 - sbl1_ddr_set_params, Start
+B -    367433 - cpr_init, Start
+D -        30 - cpr_init, Delta
+B -    373076 - Pre_DDR_clock_init, Start
+D -       183 - Pre_DDR_clock_init, Delta
+D -         0 - sbl1_ddr_set_params, Delta
+B -    385642 - pm_driver_init, Start
+D -      6832 - pm_driver_init, Delta
+B -    402051 - clock_init, Start
+D -        61 - clock_init, Delta
+B -    402112 - Image Load, Start
+D -     26321 - QSEE Image Loaded, Delta - (571664 Bytes)
+B -    428464 - Image Load, Start
+D -       488 - SEC Image Loaded, Delta - (2048 Bytes)
+B -    435662 - sbl1_efs_handle_cookies, Start
+D -       183 - sbl1_efs_handle_cookies, Delta
+B -    443470 - Image Load, Start
+D -     18666 - QHEE Image Loaded, Delta - (6808 Bytes)
+B -    462166 - Image Load, Start
+D -     12536 - RPM Image Loaded, Delta - (145640 Bytes)
+B -    474702 - Image Load, Start
+D -     21899 - APPSBL Image Loaded, Delta - (228300 Bytes)
+B -    496631 - QSEE Execution, Start
+D -        61 - QSEE Execution, Delta
+B -    502304 - SBL1, End
+D -    266692 - SBL1, Delta
+S - Flash Throughput, 151000 KB/s  (954912 Bytes,  6283 us)
+S - DDR Frequency, 400 MHz
+Android Bootloader - UART_DM Initialized!!!
+[0] welcome to lk
+
+[0] OpenStick Bootloader V0.01
+[0] [Author] HandsomeYingyan <handsomeyingyan@gmail.com>
+[0] This Bootloader Has Super Handsome Power!
+[0] calling constructors
+[0] initializing heap
+[0] initializing threads
+[0] initializing dpc
+[0] initializing timers
+[0] creating bootstrap completion thread
+[10] top of bootstrap2()
+[10] initializing platform
+[10] platform_init()
+[10] initializing target
+[10] target_init()
+[20] TLMM_VOL_UP_BTN_GPIO = 1
+[40] TLMM_EDL_BTN_GPIO = 1
+[40] TLMM_EDL_BTN_GPIO-status = 0
+[40] initialising mmc_slot =1
+[40]  Initializing MMC host data structure and clock!
+[60] Decoded CID fields:
+[60] Manufacturer ID: 90
+[70] OEM ID: 0x14a
+[70] Product Name: H4G2a
+[70] Product revision: 0.1
+[70] Product serial number: 60D83205
+[80] Manufacturing date: 2 2008
+[90] Decoded CSD fields:
+[90] cmmc_structure: 3
+[90] card_cmd_class: f5
+[90] write_blk_len: 512
+[90] read_blk_len: 512
+[100] r2w_factor: 2
+[100] sector_size: 0
+[100] c_size_mult:7
+[100] c_size: 4095
+[100] nsac_clk_cycle: 100
+[110] taac_ns: 15000000
+[110] tran_speed: 0 kbps
+[110] erase_blk_len: 1
+[110] read_blk_misalign: 0
+[110] write_blk_misalign: 0
+[120] read_blk_partial: 0
+[120] write_blk_partial: 0
+[120] wp_grp_size: 16384
+[120] Card Capacity: 3909091328 Bytes
+[130] SDHC Running in HS200 mode
+[140] Done initialization of the card
+[150] erase_grpsize: 31
+[150] erase_grpmult: 31
+[150] wp_grpsize: 15
+[150] wp_grpen: 1
+[150] perm_wp: 0
+[160] temp_wp: 0
+[160] mbr partition table dump:
+[160] 	0: status 0x0, type 0xee, start 0x1, len 0xffffffff
+[170] 	1: status 0x0, type 0x0, start 0x0, len 0x0
+[170] 	2: status 0x0, type 0x0, start 0x0, len 0x0
+[180] 	3: status 0x0, type 0x0, start 0x0, len 0x0
+[180] found GPT
+[190] initialising mmc_slot =2
+[190]  Initializing MMC host data structure and clock!
+[210] Error: Command timeout error
+[210] Failure getting OCR response from MMC Card
+[210] MMC card failed to respond, try for SD card
+[220] Error: Command timeout error
+[220] The response for CMD8 does not match the supplied value
+[230] Failed to initialize SD card
+[230] Failed detecting MMC/SDC @ slot2
+[230] sdcard init failed![240] pm8x41_get_is_cold_boot: cold boot
+[240] calling apps_init()
+[240] serial number: 60d83205
+[250] 1boot_into_fastboot=0
+[250] 1boot_into_recovery=0
+[250] 2boot_into_fastboot=0
+[250] 2boot_into_recovery=0
+[260] keys_get_state(KEY_HOME)=0
+[260] keys_get_state(KEY_BACK)=0
+[260] keys_get_state(KEY_VOLUMEDOWN)=0
+[270] 4boot_into_fastboot=0
+[270] 4boot_into_recovery=0
+[270] 5boot_into_fastboot=0
+[270] 5boot_into_recovery=0
+[280] fs-boot: Can't open hd2
+[280] Unable to load boot.img from ext2. Continuing legacy boot
+[280] Unable to locate /bootselect partition
+[290] Loading boot image (46589952): start
+[620] Loading boot image (46589952): done
+[620] use_signed_kernel=0, is_unlocked=1, is_tampered=0.
+[630] decompress image start
+[920] decompressed image finished.
+[930] smem ram ptable found: ver: 1 len: 4
+[930] smem ram ptable found: ver: 1 len: 4
+[930] smem ram ptable found: ver: 1 len: 4
+[940] smem ram ptable found: ver: 1 len: 4
+[940] smem ram ptable found: ver: 1 len: 4
+[950] smem ram ptable found: ver: 1 len: 4
+[950] smem ram ptable found: ver: 1 len: 4
+[950] smem ram ptable found: ver: 1 len: 4
+[960] smem ram ptable found: ver: 1 len: 4
+[960] qcom,msm-id entry not found
+[960] Only one appended non-skales DTB, select it.
+[1010] target_display_panel_node:510: hw_id=24 panel_name=""
+[1010] cmdline: firmware_class.path=/vendor/firmware earlycon console=ttyMSM0,115200 loglevel=4 androidboot.emmc=true androidboot.serialno=60d83205 androidboot.baseband=msm mdss_mdp.panel=0:dsi:0:
+[1030] Updating device tree: start
+[1030] smem ram ptable found: ver: 1 len: 4
+[1090] Setting WLAN mac address in DT: 02:00:60:D8:32:05
+[1120] Setting Bluetooth BD address in DT: 02:00:60:D8:32:04
+[1120] Setting BT mac address in DT: 02:00:60:D8:32:04
+[1130] Updating device tree: done
+[1130] booting linux @ 0x80000000, ramdisk @ 0x82000000 (40488751), tags/device tree @ 0x81e00000
+[1140] Jumping to kernel via monitor
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd030]
+[    0.000000] Linux version 5.15.0-msm8916 (nixbld@localhost) (aarch64-unknown-linux-gnu-gcc (GCC) 6.5.0, GNU ld (GNU Binutils) 2.38) #1-mobile-nixos SMP PREEMPT Tue Jan 1 00:00:00 UTC 1980
+[    0.000000] Machine model: Handsome Openstick
+[    0.000000] earlycon: msm_serial_dm0 at MMIO 0x00000000078b0000 (options '')
+[    0.000000] printk: bootconsole [msm_serial_dm0] enabled
+[    1.943496] spmi-temp-alarm 200f000.spmi:pmic@0:t^@
+***************************************
+* Mobile NixOS stage-1 script wrapper *
+***************************************
+
+
+***************************************
+* Continuing with stage-1...          *
+***************************************
+
+I, [1970-01-01T00:03:13.101021//0.0076 #1]  INFO -- : ************************
+I, [1970-01-01T00:03:13.101281//0.0079 #1]  INFO -- : * Mobile NixOS stage-1 *
+I, [1970-01-01T00:03:13.101447//0.0080 #1]  INFO -- : ************************
+I, [1970-01-01T00:03:13.101571//0.0082 #1]  INFO -- :
+I, [1970-01-01T00:03:13.101719//0.0083 #1]  INFO -- : init started ~4.776373s after kernel boot time.
+I, [1970-01-01T00:03:13.101843//0.0084 #1]  INFO -- : Built for device openstick
+I, [1970-01-01T00:03:13.101961//0.0086 #1]  INFO -- :
+I, [1970-01-01T00:03:13.123194//0.0298 #1]  INFO -- : Using ANDROID_USB Gadget.
+I, [1970-01-01T00:03:13.172377//0.0790 #1]  INFO -- : Running Tasks::Directory(/etc/udev)...
+I, [1970-01-01T00:03:13.187284//0.0939 #1]  INFO -- : Running Tasks::Directory(/var/log)...
+I, [1970-01-01T00:03:13.202245//0.1088 #1]  INFO -- : Running Tasks::Environment...
+I, [1970-01-01T00:03:13.221283//0.1279 #1]  INFO -- : Running Tasks::LoginEnvironment...
+I, [1970-01-01T00:03:13.251923//0.1585 #1]  INFO -- : Running Tasks::Symlink(/proc/mounts, /etc/mtab)...
+I, [1970-01-01T00:03:13.279954//0.1866 #1]  INFO -- : Running Tasks::Target<Environment>...
+I, [1970-01-01T00:03:13.308104//0.2147 #1]  INFO -- : Running Tasks::Mount(devtmpfs, /dev, {:type=>"devtmpfs", :options=>["nosuid", "strictatime", "mode=755", "size=5%"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:13.312963//0.2196 #1]  WARN -- : Kernel filesystem module “devtmpfs” failed to load.
+I, [1970-01-01T00:03:13.464223//0.3708 #1]  INFO -- : Running Tasks::Mount(devpts, /dev/pts, {:type=>"devpts", :options=>["nosuid", "noexec", "mode=620", "ptmxmode=0666", "gid=3"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:13.469884//0.3765 #1]  WARN -- : Kernel filesystem module “devpts” failed to load.
+I, [1970-01-01T00:03:13.663386//0.5700 #1]  INFO -- : Running Tasks::Mount(proc, /proc, {:type=>"proc", :options=>["nosuid", "noexec", "nodev"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:13.669207//0.5758 #1]  WARN -- : Kernel filesystem module “proc” failed to load.
+I, [1970-01-01T00:03:13.862793//0.7694 #1]  INFO -- : Running Tasks::Modules...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:13.870851//0.7775 #1]  WARN -- : Kernel module configfs failed to load.
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:13.876115//0.7827 #1]  WARN -- : Kernel module libcomposite failed to load.
+I, [1970-01-01T00:03:14.063936//0.9705 #1]  INFO -- : Running Tasks::Mount(sysfs, /sys, {:type=>"sysfs", :options=>["nosuid", "noexec", "nodev"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:14.069523//0.9761 #1]  WARN -- : Kernel filesystem module “sysfs” failed to load.
+I, [1970-01-01T00:03:14.256407//1.1630 #1]  INFO -- : Running Tasks::Mount(configfs, /sys/kernel/config, {:type=>"configfs", :options=>["nosuid", "noexec", "nodev"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:14.262111//1.1687 #1]  WARN -- : Kernel filesystem module “configfs” failed to load.
+I, [1970-01-01T00:03:14.445277//1.3519 #1]  INFO -- : Running Tasks::Mount(tmpfs, /dev/shm, {:type=>"tmpfs", :options=>["nosuid", "nodev", "strictatime", "mode=1777", "size=50%"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:14.450937//1.3575 #1]  WARN -- : Kernel filesystem module “tmpfs” failed to load.
+I, [1970-01-01T00:03:14.640731//1.5473 #1]  INFO -- : Running Tasks::Mount(tmpfs, /run, {:type=>"tmpfs", :options=>["nosuid", "nodev", "strictatime", "mode=755", "size=25%"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:14.646348//1.5530 #1]  WARN -- : Kernel filesystem module “tmpfs” failed to load.
+I, [1970-01-01T00:03:14.780701//1.6873 #1]  INFO -- : Running Tasks::ProgressSocket...
+I, [1970-01-01T00:03:14.970640//1.8772 #1]  INFO -- : Running Tasks::Mount(ramfs, /run/keys, {:type=>"ramfs", :options=>["nosuid", "nodev", "mode=750"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:14.976316//1.8829 #1]  WARN -- : Kernel filesystem module “ramfs” failed to load.
+I, [1970-01-01T00:03:15.175536//2.0821 #1]  INFO -- : Running Tasks::Mount(tmpfs, /run/wrappers, {:type=>"tmpfs", :options=>["nodev", "mode=755", "size=50%"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:15.181082//2.0877 #1]  WARN -- : Kernel filesystem module “tmpfs” failed to load.
+I, [1970-01-01T00:03:15.396088//2.3027 #1]  INFO -- : Running Tasks::UDev...
+Starting version 251.4
+I, [1970-01-01T00:03:16.069638//2.9762 #1]  INFO -- : Running Tasks::AutoResize...
+dumpe2fs 1.46.5 (30-Dec-2021)
+I, [1970-01-01T00:03:16.160613//3.0672 #1]  INFO -- : /dev/disk/by-label/NIXOS_SYSTEM: 644702208/3571432960 in use.
+I, [1970-01-01T00:03:16.160838//3.0674 #1]  INFO -- : Resizing /dev/disk/by-label/NIXOS_SYSTEM...
+NIXOS_SYSTEM: Padding at end of inode bitmap is not set. FIXED.
+NIXOS_SYSTEM: 26927/39360 files (0.0% non-contiguous), 146983/157398 blocks
+I, [1970-01-01T00:03:17.981895//4.8885 #1]  INFO -- : Re-running e2fsc...
+NIXOS_SYSTEM: 26927/39360 files (0.0% non-contiguous), 146983/157398 blocks
+resize2fs 1.46.5 (30-Dec-2021)
+Resizing the filesystem on /dev/disk/by-label/NIXOS_SYSTEM to 871931 (4k) blocks.
+The filesystem on /dev/disk/by-label/NIXOS_SYSTEM is now 871931 (4k) blocks long.
+
+I, [1970-01-01T00:03:21.681756//8.5884 #1]  INFO -- : Running Tasks::Mount(/dev/disk/by-label/NIXOS_SYSTEM, /mnt/, {:type=>"ext4", :options=>[]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:21.693678//8.6003 #1]  WARN -- : Kernel filesystem module “ext4” failed to load.
+I, [1970-01-01T00:03:21.883948//8.7906 #1]  INFO -- : Running Tasks::Mount(/dev/disk/by-partlabel/rootfs, /vendor, {:type=>"ext4", :options=>["ro", "nosuid", "noexec", "nodev"]})...
+modprobe: can't change directory to '5.15.0-msm8916': No such file or directory
+W, [1970-01-01T00:03:21.893710//8.8003 #1]  WARN -- : Kernel filesystem module “ext4” failed to load.
+mount: mounting /dev/disk/by-partlabel/rootfs on /vendor failed: Device or resource busy
+F, [1970-01-01T00:03:21.904771//8.8114 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.905144//8.8117 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.905540//8.8121 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.905858//8.8125 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.906162//8.8128 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.906458//8.8131 #1] FATAL -- :
+F, [1970-01-01T00:03:21.906753//8.8134 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.907044//8.8136 #1] FATAL -- : * Fatal error in Mobile NixOS stage-1 init *
+F, [1970-01-01T00:03:21.907337//8.8139 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.907623//8.8142 #1] FATAL -- :
+F, [1970-01-01T00:03:21.907916//8.8145 #1] FATAL -- : INIT_EXCEPTION: Uncaught Exception
+F, [1970-01-01T00:03:21.908203//8.8148 #1] FATAL -- :
+F, [1970-01-01T00:03:21.908490//8.8151 #1] FATAL -- : Command failed... `mount -t ext4 -o ro,nosuid,noexec,nodev /dev/disk/by-partlabel/rootfs /vendor` (255) (System::CommandError)
+F, [1970-01-01T00:03:21.908783//8.8154 #1] FATAL -- :
+F, [1970-01-01T00:03:21.909080//8.8157 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.909457//8.8161 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.909767//8.8164 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.910058//8.8167 #1] FATAL -- : ********************************************
+F, [1970-01-01T00:03:21.910347//8.8170 #1] FATAL -- : ********************************************
+[display/drm_drv]: Starting DRM subsystem... (/dev/dri/card0)
+[display/drm_drv]: error: cannot open '/dev/dri/card0': No such file or directory
+[display/drm_drv]: error: modeset failed with error 2: No such file or directory
+
+[display/drm_drv]: error: (falling back to fbdev...)
+Error: cannot open framebuffer device: No such file or directory
+[display/drm_drv]: DRM subsystem and buffer mapped successfully
+WARNING: Error loading fallback font in FT_New_Face: 1
+Error in FT_New_Face: 1
+Error: Could not load font; falling back to built-in Roboto@22... 	(hal.c #122)
+libinput error: /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-libinput-aarch64-unknown-linux-gnu-1.21.0/share/libinput: failed to find data files
+libinput error: Failed to load the device quirks from /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-libinput-aarch64-unknown-linux-gnu-1.21.0/share/libinput and /etc/libinput/local-overrides.quirks. This will negatively affect device behavior. See https://wayland.freedesktop.org/libinput/doc/1.21.0/device-quirks.html for details.
+libinput error: /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-libinput-aarch64-unknown-linux-gnu-1.21.0/share/libinput: failed to find data files
+libinput error: Failed to load the device quirks from /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-libinput-aarch64-unknown-linux-gnu-1.21.0/share/libinput and /etc/libinput/local-overrides.quirks. This will negatively affect device behavior. See https://wayland.freedesktop.org/libinput/doc/1.21.0/device-quirks.html for details.
+libinput error: /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-libinput-aarch64-unknown-linux-gnu-1.21.0/share/libinput: failed to find data files
+libinput error: Failed to load the device quirks from /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-libinput-aarch64-unknown-linux-gnu-1.21.0/share/libinput and /etc/libinput/local-overrides.quirks. This will negatively affect device behavior. See https://wayland.freedesktop.org/libinput/doc/1.21.0/device-quirks.html for details.
+Error in FT_New_Face: 1
+Error in FT_New_Face: 1
+Exiting error applet!
+exit(99)
+[   24.165914] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00006300
+[   24.165997] CPU: 1 PID: 1 Comm: loader Not tainted 5.15.0-msm8916 #1-mobile-nixos
+[   24.172420] Hardware name: Handsome Openstick (DT)
+[   24.180055] Call trace:
+[   24.184737]  dump_backtrace+0x0/0x1f8
+[   24.187083]  show_stack+0x14/0x60
+[   24.190901]  dump_stack_lvl+0x64/0x7c
+[   24.194200]  dump_stack+0x14/0x2c
+[   24.197845]  panic+0x16c/0x374
+[   24.201142]  do_exit+0x8bc/0xa00
+[   24.204096]  do_group_exit+0x40/0xa0
+[   24.207481]  __arm64_sys_exit_group+0x14/0x18
+[   24.211041]  invoke_syscall+0x40/0xf8
+[   24.215293]  el0_svc_common.constprop.3+0x6c/0xf8
+[   24.218941]  do_el0_svc+0x20/0x98
+[   24.223625]  el0_svc+0x1c/0x58
+[   24.226925]  el0t_64_sync_handler+0x8c/0xb0
+[   24.229877]  el0t_64_sync+0x18c/0x190
+[   24.233963] SMP: stopping secondary CPUs
+[   24.238013] Kernel Offset: disabled
+[   24.241770] CPU features: 0x00801801,00000846
+[   24.244983] Memory Limit: none
+[   24.249510] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00006300 ]---
