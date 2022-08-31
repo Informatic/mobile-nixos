@@ -32,6 +32,7 @@ in
   mobile.boot.stage-1 = {
     kernel.package = pkgs.callPackage ./kernel { };
     bootlog.enable = false;
+    crashtobootloader = true;
   };
 
   mobile.device.firmware = pkgs.callPackage ./firmware {};
@@ -65,7 +66,7 @@ in
     };
   };
 
-  mobile.system.vendor.partition = "/dev/disk/by-partlabel/rootfs";
+  # mobile.system.vendor.partition = "/dev/disk/by-partlabel/rootfs";
 
   boot.kernelParams = [
     "earlycon"
