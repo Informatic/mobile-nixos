@@ -2,12 +2,14 @@
 
 ## outstanding issues
 
-- stage-2 actually working
+- proper option for disabling Splash Task in stage-1
 - qtestsign (lol python) still doesn't work cross-host
+- wifi + lte
+  - the DTB might be wrong, `wlan` module is never loaded
 
 ## usage
 
-(note, I use a newer nixpkgs with mobile-nixos that might fix certain cross-compile scenarios)
+(note, I am building against a newer nixpkgs than this repo/PR pins)
 
 ```
 nix-build --argstr device openstick -A outputs.android-abootimg
@@ -18,9 +20,9 @@ fastboot flash boot result/boot.img
 fastboot flash -S 200M rootfs result/system.img
 ```
 
-NOTE: the `aboot` built here from `lk2nd` sources is something I've hacked on in an attempt to prevent
-devices from becoming semi-bricked. Please note, I have barely any idea what I'm doing so be careful
-or wait for someone else to go first. Or be bold, they're fairly cheap devices...
+NOTE: the `aboot` built here from `lk2nd` sources (but note, is the `lk1st` make target!) is something I've
+hacked on in an attempt to prevent devices from becoming semi-bricked. Please note, I have barely any
+idea what I'm doing so be careful or wait for someone else to go first. Or be bold, they're fairly cheap devices...
 
   
 ## why?
@@ -105,19 +107,19 @@ which, despite being Chrome-specific, would be very "cool".
   - not sure if there's really a whole huge point to this?  
 
 
-## research
+## Physical HW
 
-test pads (along the bottom edge of the board, facing up)
-FROM THE RIGHT, sorry:
-1. pulling down resets
-2. gpio35
-3. --
-4. gpio22
-5. --
-6. pulling down reset
-7. RX
-8. TX
-BUTTON = gpio35
+Test Pads (from the "left"; test pads facing up; usb plug on the left)
+1. ?
+2. GPIO35
+3. Serial RX (from mobile-nixos booted anyway)
+4. GPIO22
+5. ?
+6. ?
+7. ?
+8. Serial TX
+
+Physical Reset Button = GPIO35
 
 ### debian image experimentation
 

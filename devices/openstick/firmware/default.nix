@@ -23,7 +23,13 @@ in runCommandNoCC "openstick-firmware" {
   cd debian
   simg2img rootfs.img vendor-raw.img
   debugfs vendor-raw.img -R "rdump lib/firmware ."
+  
+  ls -al -R .
 
   mkdir -p $out/lib
   mv firmware $out/lib/firmware
+  
+  echo "--"
+  ls -al $out/lib/firmware
+  # exit -1
 ''

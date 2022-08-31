@@ -32,7 +32,7 @@ in
   mobile.boot.stage-1 = {
     kernel.package = pkgs.callPackage ./kernel { };
     bootlog.enable = false;
-    crashtobootloader = true;
+    crashToBootloader = true;
   };
 
   mobile.device.firmware = pkgs.callPackage ./firmware {};
@@ -51,6 +51,9 @@ in
     ''
   );
 
+  # mobile.adbd.enable = false;
+  mobile.boot.stage-1.usb.enable = false;
+  
   mobile.system.system = "aarch64-linux";
   mobile.system.android.device_name = "openstick";
   mobile.system.android = {
