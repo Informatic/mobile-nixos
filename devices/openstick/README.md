@@ -7,6 +7,12 @@
 - wifi + lte
   - the DTB might be wrong, `wlan` module is never loaded
 
+## wip
+- kernel/dtb support for this device: https://github.com/OpenStick/linux/pull/3
+  - probably other GPIO pins wrong
+  - probably need to checkon modem/wifi stuff to see if it's wired up right, idk about these things
+
+
 ## usage
 
 (note, I am building against a newer nixpkgs than this repo/PR pins)
