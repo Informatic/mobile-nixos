@@ -2,11 +2,10 @@
 , fetchFromGitHub
 , python
 , python3Packages
-, openssl
 # , buildPackages
 }:
 
-python3Packages.buildPythonApplication rec {
+stdenv.mkDerivation {
   pname = "qtestsign";
   version = "unset";
   
@@ -20,34 +19,33 @@ python3Packages.buildPythonApplication rec {
   # missing python packages of course:
   # cryptography... maybe others
   
-  format = "other";
-  
   postPatch = ''
     patchShebangs *.py
-    chmod +x ./qtestsign.py
   '';
   
-  propagatedBuildInputs = with python3Packages; [
+  buildInputs = with python3Packages; [
     python
     cryptography
-  ];
-  propagatedNativeBuildInputs = with python3Packages; [
-    openssl
-    cryptography
-  ];
-
-  nativeBuildInputs = [
-    python3Packages.cryptography
     python3Packages.wrapPython
   ];
 
-  installPhase = ''
-    mkdir -p $out/bin
-    cp -v $src/* $out/bin/
+  nativeBuildInputs = [
+  ];
+  propagatedNativeBuildInputs = with python3Packages; [
+    python
+  ];
+  
+  # src is 4 python files next to each other
+  # don't want to just drop them all in /bin/ plus how does python even work really?
+  # postFixup = "wrapPythonPrograms";
 
-    chmod +x $out/bin/qtestsign.py
-    
-    wrapPythonPrograms
+  buildPhase = ''
+    mkdir -p $out/bin
+    cp -v $src/* $out/bin
+  '';
+  
+  installPhase = ''
+    true
   '';
   
   # TODO meta url : https://github.com/msm8916-mainline/qtestsign

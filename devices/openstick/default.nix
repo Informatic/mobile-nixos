@@ -46,7 +46,8 @@ in
     ''
       tmp="''$(mktemp -d)"
       cp ${openstick_lk2nd.out}/emmc_appsboot.mbn $tmp/
-      qtestsign aboot $tmp/emmc_appsboot.mbn
+      qtestsign aboot $tmp/emmc_appsboot.mbn \
+       || qtestsign.py aboot $tmp/emmc_appsboot.mbn
       mv $tmp/emmc_appsboot-test-signed.mbn $out
     ''
   );
