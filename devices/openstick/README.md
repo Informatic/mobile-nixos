@@ -4,13 +4,20 @@
 
 - proper option for disabling Splash Task in stage-1
 - qtestsign (lol python) still doesn't work cross-host
-- wifi + lte
+- lte
   - the DTB might be wrong, `wlan` module is never loaded
 
 ## wip
 - kernel/dtb support for this device: https://github.com/OpenStick/linux/pull/3
   - probably other GPIO pins wrong
   - probably need to checkon modem/wifi stuff to see if it's wired up right, idk about these things
+  
+
+## state
+
+- I can update it like most of my nixos systems (with mobile-nixos caveats)
+- aka, I have wifi+tailscale up on it
+- woot!
 
 
 ## usage
