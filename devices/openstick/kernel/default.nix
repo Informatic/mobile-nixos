@@ -36,10 +36,12 @@ vk = mobile-nixos.kernel-builder-gcc6 rec {
 
   version = "5.15.0-msm8916";
   src = fetchFromGitHub {
-    owner = "OpenStick";
+    # owner = "OpenStick";
+    owner = "colemickens";
     repo = "linux";
-    rev = "3b1d3bfb978fb2be6707d033f26205104d60c92f";
-    sha256 = "sha256-Ui1eAWIE4ogyXGyVWX4IbtkZb+0MSvSXLmjoX+DlPDQ=";
+    rev = "19d30bdbf3aeecbbec0a81217f19cbf0318f273b";
+    # rev = "3b1d3bfb978fb2be6707d033f26205104d60c92f";
+    sha256 = "sha256-mp+QjfmAuoAc7P/r2njfcLZCVnuBqvF4V8MrRXy5Dn0=";
   };
 
   patches = [
@@ -57,4 +59,4 @@ vk = mobile-nixos.kernel-builder-gcc6 rec {
 };
 
 in
- (appendDtb "openstick" vk "${vk}/dtbs/qcom/msm8916-handsome-openstick.dtb")
+ (appendDtb "openstick" vk "${vk}/dtbs/qcom/msm8916-handsome-openstick-uf896-v1_1.dtb")
