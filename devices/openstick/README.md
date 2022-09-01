@@ -116,12 +116,12 @@ which, despite being Chrome-specific, would be very "cool".
 ## Physical HW
 
 Test Pads (from the "left"; test pads facing up; usb plug on the left)
-1. ?
-2. GPIO35
+1. (not sure, pulling down doesn't trigger it?)
+2. GPIO35 (confirmed, pull down resets linux cleanly)
 3. Serial RX (from mobile-nixos booted anyway)
-4. GPIO22
+4. GPIO22 (uh,.... can't confirm this now but I thought I did from debian??)
 5. ?
-6. ?
+6. HARD_RESET (pull down immediately resets?)
 7. ?
 8. Serial TX
 
