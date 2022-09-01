@@ -1,23 +1,35 @@
 # openstick wip notes
 
-## outstanding issues
-
-- proper option for disabling Splash Task in stage-1
-- qtestsign (lol python) still doesn't work cross-host
-- lte
-  - the DTB might be wrong, `wlan` module is never loaded
-
-## wip
-- kernel/dtb support for this device: https://github.com/OpenStick/linux/pull/3
-  - probably other GPIO pins wrong
-  - probably need to checkon modem/wifi stuff to see if it's wired up right, idk about these things
-  
-
 ## state
 
-- I can update it like most of my nixos systems (with mobile-nixos caveats)
-- aka, I have wifi+tailscale up on it
-- woot!
+* Wifi = *works*
+* Boot = *works*
+* Aboot -> fastboot = *works*
+* LTE modem = **not showing up in `ip a`**
+  * haven't really investigated too much
+
+
+## todo
+  0. mobile-nixos: add option for disabling splash/drm entirely
+  0. mobile-nixos: qtestsign: make work in cross-arch scenario
+  0. openstick: flesh out the rest of `devices/openstick/default.nix` with correct partition, device id, usb ids
+  0. openstick: fix up ADB
+  0. openstick: checkup kernel config, might be missing somethings for modem
+  0. openstick: fixup modem, it was at least detected in debian
+  0. openstick: firmware: better source/origin? is it better to use the original extracted vs what I'm pulling from openstick's debian image?
+  0. openstick: what even is `setup-wcnss`, should it be enabled, fix it?
+
+
+## sources/forks
+- `linux` kernel:
+  - my fork, adding a device-tree for `UF896_V1_1`
+  - https://github.com/colemickens/linux/tree/openstick
+  - "upstream" pull request: https://github.com/OpenStick/linux/pull/3
+- `aboot` / `lk2nd` (ala `lk1st`)
+  - target: `msm8916-lk1st`
+  - my fork, fixes support for reset button to get into fastboot
+  - https://github.com/colemickens/lk2nd/tree/openstick
+  - no "upstream" pull request, not sure what to do with it long(er) term
 
 
 ## usage
@@ -32,10 +44,6 @@ nix-build --argstr device openstick -A outputs.android-fastboot-images
 fastboot flash boot result/boot.img
 fastboot flash -S 200M rootfs result/system.img
 ```
-
-NOTE: the `aboot` built here from `lk2nd` sources (but note, is the `lk1st` make target!) is something I've
-hacked on in an attempt to prevent devices from becoming semi-bricked. Please note, I have barely any
-idea what I'm doing so be careful or wait for someone else to go first. Or be bold, they're fairly cheap devices...
 
   
 ## why?
@@ -72,136 +80,48 @@ which, despite being Chrome-specific, would be very "cool".
    - `ls-base.txt` (`ls -al` from the base zip)
    - `debian-{boot,roofs}.img-file` (the `file` output of the debian imgs)
   
-## other questions:
-- [forcing fastboot/EDL with lk2nd and black-stick-v1](https://github.com/OpenStick/OpenStick/issues/17)
 
 ## tested devices
  - variant1: [from "Pro Sweety Baby Store" (older black or white variants?)](https://www.aliexpress.com/item/3256803964280481.html?spm=a2g0o.order_list.0.0.21ef1802DXiYI3)
    - <img src="./readme-img/openstick-black-v1.jpg" height="200" title="openstick aliexpress black model" />
    - the exact variant purchased was the "2x black" variety
    - this is labeled `UF896_V1.1` on the top of the board
-   - there are eight gold pads in a row on the top edge of the bottom of the board
      if the usb connector is facing to the left
-   - the right-most pad is the board's UART TX
    - there is no microSD card slot on this variant
-   - **it is unclear how to force EDL mode so these are currently easy to "brick"**
-     - **Question**:
-     - what is the weird extra internal plastic connector piece that
-       seems to depress an internal button/contact on the board?
-     - <a href="https://raw.githubusercontent.com/colemickens/mobile-nixos/openstick/devices/openstick/readme-img/openstick-plastic-shunt.jpg">
-        <img src="./readme-img/openstick-plastic-shunt.jpg" height="200" title="openstick plastic shunt" />
-        </a>
     
  - variant2: [from "Pro Sweety Baby Store" (newer red+white variant?)](https://www.aliexpress.com/item/3256804379039480.html?spm=a2g0o.order_list.0.0.21ef1802DXiYI3)
-   - exact variant purchased was the "2x" variety
-   - ... well, it has cutout for a microSD card slot, but no microSD card internals
-   - yup, it's literally the eaxct same `UF896_V1.1` board...
-   - and yes, all of the info on this page identically applies, I literally can't tell which is which with their case off
-
-
-## status
-
-**latest**:
- - mobile-nixos stage-2 boots, but fails to load basically all kernel modules, doesn't have anything built in and fails to boot
-            
-**next steps**:   
- 1. (wip) flesh out the rest of `devices/openstick/default.nix` with correct partition, device id, usb ids, etc
- 2. kernel -
-    seems like tons of modules are missing, breaking stage-2?
-
- 3. firmware - better origin?    
-    - [already asked on OpenStick about a better origin for firmware than just copying from them](https://github.com/OpenStick/stick-blobs/issues/2)
-    - check on ABL passing firmware_path on cmdline and overriding us
-
-
-## bonus todo:
-- build `hyp.bin` from source, or at least get it from the upstream repo's releases?
-  - no idea if it's the exact same one: https://github.com/msm8916-mainline/qhypstub
-  - not sure if there's really a whole huge point to this?  
+   - different case, but otherwise identical board
 
 
 ## Physical HW
 
-Test Pads (from the "left"; test pads facing up; usb plug on the left)
+* Physical Reset Button = GPIO35
+
+### Test Pads
+
+*from the "left"; test pads facing up; usb plug on the left*
+
 1. (not sure, pulling down doesn't trigger it?)
 2. GPIO35 (confirmed, pull down resets linux cleanly)
 3. Serial RX (from mobile-nixos booted anyway)
 4. GPIO22 (uh,.... can't confirm this now but I thought I did from debian??)
-5. ?
-6. HARD_RESET (pull down immediately resets?)
+5. pad 5 is GPIO0 (pulled down by default) (credit @infowski)
+6. HARD_RESET (pull down immediately resets?) (GPIO37, aka EDL trigger)
 7. ?
 8. Serial TX
 
-Physical Reset Button = GPIO35
 
-### debian image experimentation
+### Extra Pins
 
-first:
-- follow the instructions from extrowerk to flash the generic-base and debian image.
+**credit to `@informatic:hackerspace.pl`**
 
-then:
-- `adb shell` into it
-- set a `TERM`
-- `nmtui` to connect to a network
-- `apt update` + `apt install curl fdisk`
-- `systemctl start sshd` to start sshd
-- `useradd -m cole` + `gpasswd -a cole sudo` to add a sudo enabled user
-- `mkdir /home/cole/.ssh/`
-- download your ssh key into there
-- fixup .ssh dir + auth_key file perms to make ssh happy
+  - <a href="https://raw.githubusercontent.com/colemickens/mobile-nixos/openstick/devices/openstick/readme-img/openstick-extra-pins.jpg">
+    <img src="./readme-img/openstick-extra-pins.jpg" height="200" />
+    </a>
 
-```
-❯ ssh cole@192.168.124.115
-Linux openstick 5.15.0-handsomekernel+ #17 SMP PREEMPT Sun Feb 6 22:10:37 CST 2022 aarch64
+### EDL Recovery Mode
 
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
+**credit to `@informatic:hackerspace.pl`**
 
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-
-
-$ uname -a
-Linux openstick 5.15.0-handsomekernel+ #17 SMP PREEMPT Sun Feb 6 22:10:37 CST 2022 aarch64 GNU/Linux
-
-
-$ top
-top - 23:01:31 up  1:59,  1 user,  load average: 0.03, 0.09, 0.05
-Tasks: 109 total,   1 running, 108 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  1.4 us,  2.7 sy,  0.0 ni, 95.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
-MiB Mem :    382.1 total,     77.3 free,     73.9 used,    230.9 buff/cache
-MiB Swap:    191.0 total,    190.5 free,      0.5 used.    297.3 avail Mem
-
-
-$ ls /lib/firmware
-mba.mbn    modem.b03  modem.b08  modem.b14  modem.b18  modem.b25  regulatory.db  wcnss.b04  wcnss.b11
-modem.b00  modem.b04  modem.b09  modem.b15  modem.b21  modem.b26  wcnss.b00	 wcnss.b06  wcnss.mdt
-modem.b01  modem.b05  modem.b12  modem.b16  modem.b22  modem.mdt  wcnss.b01	 wcnss.b09  wlan
-modem.b02  modem.b06  modem.b13  modem.b17  modem.b23  qcom	  wcnss.b02	 wcnss.b10
-
-
-$ sudo ip link
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: usb0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 46:d7:70:a3:6e:15 brd ff:ff:ff:ff:ff:ff
-3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT group default qlen 1000
-    link/ether 02:00:01:a5:af:20 brd ff:ff:ff:ff:ff:ff
-4: wwan0: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-5: wwan1: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-6: wwan2: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-7: wwan3: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-8: wwan4: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-9: wwan5: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-10: wwan6: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-11: wwan7: <POINTOPOINT,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/[519]
-```
+* bridge test **pad 1** + **pad 6** while plugging in USB, hold for 5+ seconds before releasing
+  * (again, as before, usb plug on the left, test pads on the top, counting from the left)
