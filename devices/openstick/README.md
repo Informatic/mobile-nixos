@@ -101,14 +101,18 @@ which, despite being Chrome-specific, would be very "cool".
 
 *from the "left"; test pads facing up; usb plug on the left*
 
-1. (not sure, pulling down doesn't trigger it?)
+1. GPIO37
 2. GPIO35 (confirmed, pull down resets linux cleanly)
 3. Serial RX (from mobile-nixos booted anyway)
 4. GPIO22 (uh,.... can't confirm this now but I thought I did from debian??)
 5. pad 5 is GPIO0 (pulled down by default) (credit @infowski)
-6. HARD_RESET (pull down immediately resets?) (GPIO37, aka EDL trigger)
+6. presumably 1.8vcc from PMIC (see directly below)
 7. ?
 8. Serial TX
+
+from **@Informatic**:
+> Note: it's actually pad 1 that is GPIO37, and pad 6 is presumably 1.8vcc output from the PMIC.
+> GPIO37/pad 1 is in pull-down mode in EDL (pulling it up/connecting to 1.8v/pad 6 on boot triggers EDL), and then pulled up later by OpenStick debian generic kernel/dtb, which then can be connected to ground to trigger full proper system reboot. (looking at UART output)
 
 
 ### Extra Pins
