@@ -54,7 +54,9 @@ in
 
   # mobile.adbd.enable = false;
   mobile.boot.stage-1.usb.enable = false;
-  
+
+  systemd.packages = [ pkgs.rmtfs pkgs.qrtr ];
+
   mobile.system.system = "aarch64-linux";
   mobile.system.android.device_name = "openstick";
   mobile.system.android = {

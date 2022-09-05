@@ -68,6 +68,9 @@ in
       };
     };
 
+    rmtfs = callPackage ./rmtfs {};
+    qrtr = callPackage ./qrtr {};
+
     #
     # Hacks
     # -----
